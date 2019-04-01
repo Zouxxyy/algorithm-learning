@@ -1,3 +1,21 @@
-# for Mac OS X System Files
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
 .DS_Store
-Thumbs.db
+
+# Maven
+log/
+target/
+out/
+
+# Others
+bin/
+.myeclipse
