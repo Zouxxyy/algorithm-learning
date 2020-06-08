@@ -22,7 +22,6 @@ package com.zouxxyy;
 
 import java.util.HashSet;
 
-
 public class Solution03 {
     public int findRepeatNumber(int[] nums) {
         HashSet<Integer> set = new HashSet<>();
