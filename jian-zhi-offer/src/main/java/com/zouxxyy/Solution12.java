@@ -1,4 +1,6 @@
 /*
+面试题12. 矩阵中的路径
+
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
 
 [["a","b","c","e"],
@@ -27,7 +29,7 @@
 /*
 思路：
 
-普通回溯解法
+深搜
  */
 
 package com.zouxxyy;
@@ -43,26 +45,27 @@ public class Solution12 {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                if (recursive(board, word, 0, i, j, visited))
+                if (word.charAt(0) == board[i][j] && dfs(board, word, 1, i, j, visited))
                     return true;
             }
         }
         return false;
     }
 
-    public static boolean recursive(char[][] board, String word, int index, int i, int j, boolean[][] visited) {
+    public static boolean dfs(char[][] board, String word, int index, int i, int j, boolean[][] visited) {
 
         if (word.length() == index) return true;
 
-        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j] || board[i][j] != word.charAt(index))
-            return false;
-
         visited[i][j] = true;
-        for (int[] step : steps)
-            if (recursive(board, word, index + 1, i + step[0], j + step[1], visited))
+        for (int[] step : steps) {
+            int I = i + step[0];
+            int J = j + step[1];
+            if (I >= 0 && I < board.length && J >= 0 && J < board[0].length
+                    && !visited[I][J] && board[I][J] == word.charAt(index)
+                    && dfs(board, word, index + 1, I, J, visited))
                 return true;
+        }
         visited[i][j] = false;
-
         return false;
     }
 }
