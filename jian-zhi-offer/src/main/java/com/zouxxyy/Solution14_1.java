@@ -19,10 +19,16 @@
 
  */
 
+/*
+笔记：
+
+拆成 2 和 3 的乘积时最大
+ */
+
 package com.zouxxyy;
 
 public class Solution14_1 {
-    public int cuttingRope(int n) {
+    public int cuttingRopeOld(int n) {
         int[] max = new int[n + 1];
         max[1] = 1;
         for (int i = 2; i <= n; i++) {
@@ -33,5 +39,19 @@ public class Solution14_1 {
             }
         }
         return max[n];
+    }
+
+    public int cuttingRope(int n) {
+
+        if (n <= 3) return n - 1;
+
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        dp[2] = 2;
+        dp[3] = 3;
+        for (int i = 4; i <= n; i++) {
+            dp[i] = Math.max(dp[i - 2] * 2, dp[i - 3] * 3);
+        }
+        return dp[n];
     }
 }
