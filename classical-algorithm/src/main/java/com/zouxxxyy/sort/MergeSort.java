@@ -7,7 +7,7 @@ package com.zouxxxyy.sort;
 若将两个有序表合并成一个有序表，称为二路归并排序
 
 时间复杂度：平均 O(nlogn) 最坏 O(nlogn) 最好 O(nlogn)
-空间复杂度： O(n)
+空间复杂度：O(n)
 稳定排序
 
 记忆：使用辅助数组，归并左，归并右，合并左右

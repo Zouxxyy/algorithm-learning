@@ -8,7 +8,7 @@ package com.zouxxxyy.sort;
 适用场景：数据集中，且范围一定
 
 时间复杂度：平均 O(n + k) 最坏 O(n + k) 最好 O(n + k)
-空间复杂度： O(n + k)
+空间复杂度：O(n + k)
 稳定排序
 
 非稳定版本很好写
