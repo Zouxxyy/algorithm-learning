@@ -44,6 +44,8 @@ public class C003 {
 
         int left = 0, right = n - 1;
 
+        StringBuilder builder = new StringBuilder();
+
         while (left < right) {
 
             // 去重
@@ -58,7 +60,7 @@ public class C003 {
 
             int sum = arr[left] + arr[right];
             if (sum == k) {
-                System.out.println(arr[left] + " " + arr[right]);
+                builder.append(arr[left]).append(' ').append(arr[right]).append('\n');
                 left++;
                 right--;
             } else if (sum > k) {
@@ -67,5 +69,6 @@ public class C003 {
                 left++;
             }
         }
+        System.out.println(builder.toString());
     }
 }

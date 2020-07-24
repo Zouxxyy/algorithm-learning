@@ -3,6 +3,8 @@ package com.zouxxyy;
 import java.util.Scanner;
 
 /*
+在行列都排好序的矩阵中找指定的数
+
 题目描述
 给定一个N×M的整形矩阵matrix和一个整数K, matrix的每一行和每一列都是排好序的。
 实现一个函数，判断K是否在matrix中

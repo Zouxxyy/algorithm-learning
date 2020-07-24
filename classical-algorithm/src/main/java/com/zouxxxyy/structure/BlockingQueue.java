@@ -1,4 +1,4 @@
-package com.zouxxxyy.structor;
+package com.zouxxxyy.structure;
 
 /*
 双锁机制的ArrayBlockingQueue
