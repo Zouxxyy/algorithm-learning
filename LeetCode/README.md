@@ -1,4 +1,0 @@
-# LeetCode
-
-go go go
-
