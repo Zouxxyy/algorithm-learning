@@ -88,16 +88,26 @@ public class InorderTraversal<T> {
 
             BinaryTree<T> pop = stack.pop();
 
-            res.add(pop.val);
+            if (pop != null) {
 
-            if (pop.right != null) {
-                stack.push(pop.right);
+                // 顺序为 r(右)、使用n、r(左) 入栈
+
+                if (pop.right != null) {
+                    stack.push(pop.right);
+                }
+
+                stack.push(pop);
+                stack.push(null);
+
+                if (pop.left != null) {
+                    stack.push(pop.left);
+                }
+
+            } else {
+
+                res.add(stack.pop().val);
+
             }
-
-            if (pop.left != null) {
-                stack.push(pop.left);
-            }
-
         }
 
         return res;

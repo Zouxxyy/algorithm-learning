@@ -56,6 +56,8 @@ public class PreorderTraversal<T> {
 
             if (pop != null) {
 
+                // 顺序为 r(右)、r(左)、使用n 入栈
+
                 if (pop.right != null) {
                     stack.push(pop.right);
                 }

@@ -28,7 +28,9 @@ public class LevelOrderTraversal<T> {
 
             List<T> list = new ArrayList<>();
 
+            // 核心是每次输出该层的大小
             int count = queue.size();
+
             for (int i = 0; i < count; i++) {
 
                 BinaryTree<T> get = queue.removeFirst();

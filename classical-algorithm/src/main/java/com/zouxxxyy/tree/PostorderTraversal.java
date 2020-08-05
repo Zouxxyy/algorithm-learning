@@ -59,6 +59,8 @@ public class PostorderTraversal<T> {
 
             if (pop != null) {
 
+                // 顺序为 使用n、r(右)、r(左) 入栈
+
                 stack.push(pop);
                 stack.push(null);
 
