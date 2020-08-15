@@ -54,4 +54,4 @@
 | 阻塞队列 | JDK 中有两种：数组（双指针 + 单锁） 和 单向链表（双锁），我写了一个使用双锁的数组 |
 | 优先队列 |                       使用大（小）根堆                       |
 | LRU缓存  |                HashMap<key, Node> + 双向链表                 |
-
+| Trie前缀树 |             Node：HashMap<ch, Node>，isEnd，data             |
