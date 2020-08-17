@@ -27,12 +27,14 @@ public class Solution83 {
 
         int cur = 0;
 
+        // 非0往前依次写
         for (int num : nums) {
             if (num != 0) {
                 nums[cur++] = num;
             }
         }
 
+        // 后面补0
         while(cur <nums.length) {
             nums[cur++] = 0;
         }

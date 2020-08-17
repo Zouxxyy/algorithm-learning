@@ -39,6 +39,7 @@ public class Solution40 {
             return false;
         }
 
+        // 右上角出发
         int i = 0;
         int j = matrix[0].length - 1;
 

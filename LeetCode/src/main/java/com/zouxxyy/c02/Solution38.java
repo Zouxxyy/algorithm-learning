@@ -35,7 +35,7 @@ public class Solution38 {
 
         int[] res = new int[nums.length];
 
-        // 左右循环
+        // 左右循环，拼出乘积
         res[0] = 1;
         for (int i = 0; i < nums.length - 1; i++) {
             res[i + 1] = res[i] * nums[i];

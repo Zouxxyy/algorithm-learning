@@ -64,6 +64,7 @@ public class Solution79 {
      */
     public int numSquares(int n) {
 
+        // 剪枝
         boolean[] visited = new boolean[n];
 
         int level = 0;
@@ -71,6 +72,7 @@ public class Solution79 {
         LinkedList<Integer> queue = new LinkedList<>();
         queue.add(n);
 
+        // 树求层数的一般写法
         while (!queue.isEmpty()) {
 
             level++;
