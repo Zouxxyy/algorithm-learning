@@ -52,7 +52,7 @@ import java.util.*;
 /*
 思路：
 
-数字拆分求次数伪命题，bfs 或者 dfs
+数字拆分求次数问题，使用 bfs 或者 dfs
  */
 
 /**

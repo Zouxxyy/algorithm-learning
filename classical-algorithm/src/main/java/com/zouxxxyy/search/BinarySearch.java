@@ -37,6 +37,8 @@ package com.zouxxxyy.search;
     return l;
 
 记忆：while(l < r)，哪个边界中点哪边靠，先写 uncheck 条件分支，check 分支 mid 不变，return l
+
+特别注意：如果最后算出来的坐标，回到了 l 或者 r 的初始值，此时不一定满足条件，也就 check(x) 不一定为 true！！
  */
 
 
