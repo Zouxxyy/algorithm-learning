@@ -37,7 +37,7 @@ public class Solution17 {
 
         List<String> res = new LinkedList<>();
 
-        if (!"".equals(digits)) {
+        if (digits.length() > 0) {
             dfs(digits, 0, res, new StringBuilder());
         }
 
@@ -53,10 +53,10 @@ public class Solution17 {
 
         String letter = letters[digits.charAt(index) - '2'];
 
-        for (int i = 0; i < letter.length(); i++) {
-            sb.append(letter.charAt(i));
+        for (char c : letter.toCharArray()) {
+            sb.append(c);
             dfs(digits, index + 1, res, sb);
-            sb.deleteCharAt(sb.length() - 1);
+            sb.deleteCharAt(index);
         }
     }
 
