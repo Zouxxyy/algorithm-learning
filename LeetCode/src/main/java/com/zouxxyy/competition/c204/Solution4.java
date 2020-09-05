@@ -58,13 +58,68 @@ package com.zouxxyy.competition.c204;
 nums 中所有数 互不相同 。
  */
 
+/*
+思路：
+
+组合 + 递归
+ */
+
+import java.util.*;
+
 /**
  * @author zxy
  */
 public class Solution4 {
 
+    private int[][] c;
+
+    private static final int MOD = 1000000007;
+
     public int numOfWays(int[] nums) {
-        return 0;
+
+        // 先计算组合问题：C[n][k] = C[n - 1][k] + C[n - 1][k - 1]
+        c = new int[nums.length][nums.length];
+
+        for (int n = 0; n < nums.length; n++) {
+            for (int k = 0; k <= n; k++) {
+                c[n][k] = k != 0 ? (c[n - 1][k] + c[n - 1][k - 1]) % MOD : 1;
+            }
+        }
+
+        ArrayList<Integer> list = new ArrayList<>(nums.length);
+        for (int num : nums) {
+            list.add(num);
+        }
+
+        return (int) (dfs(list) - 1);
+    }
+
+
+    /**
+     * 把输入改成 List
+     */
+    private long dfs(List<Integer> nums) {
+
+        // 乘法递归，返回 1
+        if (nums.size() <= 2) {
+            return 1;
+        }
+
+        List<Integer> left = new LinkedList<>();
+        List<Integer> right = new LinkedList<>();
+
+        int first = nums.get(0);
+
+        for (Integer num : nums) {
+            if (num < first) {
+                left.add(num);
+            } else if (num > first) {
+                right.add(num);
+            }
+        }
+
+        // 核心：小于首元素的制作左子树，大于首元素的制作左子树
+        return dfs(left) * dfs(right) % MOD * c[nums.size() - 1][left.size()] % MOD;
     }
 
 }

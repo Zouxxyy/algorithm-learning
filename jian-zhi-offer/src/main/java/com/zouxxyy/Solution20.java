@@ -78,55 +78,81 @@ public class Solution20 {
     }
 
     public boolean isNumber(String s) {
-        Map[] states = {
-                new HashMap<Character, Integer>() {{
-                    put(' ', 0);
-                    put('s', 1);
-                    put('d', 2);
-                    put('.', 4);
-                }}, // 0.
-                new HashMap<Character, Integer>() {{
-                    put('d', 2);
-                    put('.', 4);
-                }},                           // 1.
-                new HashMap<Character, Integer>() {{
-                    put('d', 2);
-                    put('.', 3);
-                    put('e', 5);
-                    put(' ', 8);
-                }}, // 2.
-                new HashMap<Character, Integer>() {{
-                    put('d', 3);
-                    put('e', 5);
-                    put(' ', 8);
-                }},              // 3.
-                new HashMap<Character, Integer>() {{
-                    put('d', 3);
-                }},                                        // 4.
-                new HashMap<Character, Integer>() {{
-                    put('s', 6);
-                    put('d', 7);
-                }},                           // 5.
-                new HashMap<Character, Integer>() {{
-                    put('d', 7);
-                }},                                        // 6.
-                new HashMap<Character, Integer>() {{
-                    put('d', 7);
-                    put(' ', 8);
-                }},                           // 7.
-                new HashMap<Character, Integer>() {{
-                    put(' ', 8);
-                }}                                         // 8.
-        };
-        int p = 0;
-        char t;
+
+        HashMap<Integer, HashMap<Character, Integer>> map = new HashMap<>(9);
+
+        HashMap<Character, Integer> map0 = new HashMap<>(4);
+        map0.put(' ', 0);
+        map0.put('+', 1);
+        map0.put('d', 2);
+        map0.put('.', 3);
+        map.put(0, map0);
+
+        HashMap<Character, Integer> map1= new HashMap<>(2);
+        map1.put('d', 2);
+        map1.put('.', 3);
+        map.put(1, map1);
+
+        HashMap<Character, Integer> map2= new HashMap<>(4);
+        map2.put('d', 2);
+        map2.put(' ', 8);
+        map2.put('.', 4);
+        map2.put('e', 5);
+        map.put(2, map2);
+
+        HashMap<Character, Integer> map3 = new HashMap<>(1);
+        map3.put('d', 4);
+        map.put(3, map3);
+
+        HashMap<Character, Integer> map4 = new HashMap<>(3);
+        map4.put('d', 4);
+        map4.put(' ', 8);
+        map4.put('e', 5);
+        map.put(4, map4);
+
+        HashMap<Character, Integer> map5 = new HashMap<>(2);
+        map5.put('d', 7);
+        map5.put('+', 6);
+        map.put(5, map5);
+
+        HashMap<Character, Integer> map6 = new HashMap<>(1);
+        map6.put('d', 7);
+        map.put(6, map6);
+
+        HashMap<Character, Integer> map7 = new HashMap<>(2);
+        map7.put('d', 7);
+        map7.put(' ', 8);
+        map.put(7, map7);
+
+        HashMap<Character, Integer> map8 = new HashMap<>(1);
+        map8.put(' ', 8);
+        map.put(8, map8);
+
+        Integer state = 0;
+
         for (char c : s.toCharArray()) {
-            if (c >= '0' && c <= '9') t = 'd';
-            else if (c == '+' || c == '-') t = 's';
-            else t = c;
-            if (!states[p].containsKey(t)) return false;
-            p = (int) states[p].get(t);
+
+            if (!map.containsKey(state)) {
+                return false;
+            }
+
+            HashMap<Character, Integer> cur = map.get(state);
+
+            if (c == ' ') {
+                state = cur.get(' ');
+            } else if (c >= '0' && c <= '9') {
+                state = cur.get('d');
+            } else if (c == '.') {
+                state = cur.get('.');
+            } else if (c == 'e' || c == 'E') {
+                state = cur.get('e');
+            } else if (c == '+' || c == '-') {
+                state = cur.get('+');
+            } else {
+                return false;
+            }
         }
-        return p == 2 || p == 3 || p == 7 || p == 8;
+
+        return state != null  && (state == 2 || state == 4  || state == 7 || state == 8);
     }
 }
