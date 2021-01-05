@@ -3,7 +3,7 @@ package com.zouxxxyy.template;
 /*
 滑动窗口模板
 
-记忆：窗口左闭右开，都从0开始，while（r < length）：添加arr[r]，r++ while(check) 移除 arr[l]，l--
+记忆：窗口左闭右开，都从0开始，while（r < length）：添加arr[r]，r++ while(check) 移除 arr[l]，l++
 
 注意：该模板会无条件添加第一个数进入窗口内，切记！
  */
