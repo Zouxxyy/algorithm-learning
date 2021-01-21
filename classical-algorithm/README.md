@@ -55,7 +55,7 @@
 | 优先队列 |                       使用大（小）根堆                       |
 | LRU缓存  |                HashMap<key, Node> + 双向链表                 |
 | Trie前缀树 |             Node：HashMap<ch, Node>，isEnd，data             |
-
+| 并查集 |             find_root, union             |
 
 # template（模板）
 
