@@ -33,16 +33,33 @@ public class Solution89 {
     public void rotate(int[] nums, int k) {
 
         int curIndex = 0;
-        int nextIndex;
         int cur = nums[curIndex];
-        int next;
 
-        for (int i = 0; i < nums.length; i++) {
+        int start = curIndex;
 
-            nextIndex = (curIndex + k) % nums.length;
-            next = nums[nextIndex];
-            nums[nextIndex] = cur;
-            curIndex = nextIndex;
+        int i = 0;
+        while (true) {
+
+            // 移动数字
+            int nextIndex = (curIndex + k) % nums.length;
+
+            int temp = cur;
+            cur = nums[nextIndex];
+            nums[nextIndex] = temp;
+
+            // 移动 k 个数后结束
+            if (++i >= nums.length) {
+                return;
+            }
+
+            // 如果回到初始位置，+1 调整位置
+            if (nextIndex == start) {
+                curIndex = nextIndex + 1;
+                start = curIndex;
+                cur = nums[curIndex];
+            } else {
+                curIndex = nextIndex;
+            }
 
         }
 
