@@ -67,6 +67,7 @@ public class Solution00 {
         int[] arr = new int[nums.length];
         arr[0] = nums[0];
         // 贪心数组最后一个元素的坐标
+        // arr[k] 的值代表 长度为 k+1 子序列 的尾部元素值
         int end = 0;
 
         for (int i = 1; i < nums.length; i++) {

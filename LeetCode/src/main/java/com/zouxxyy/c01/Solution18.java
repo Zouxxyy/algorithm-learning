@@ -36,13 +36,13 @@ public class Solution18 {
             return res;
         }
 
-        List<Integer> last = new ArrayList();
+        List<Integer> last = new ArrayList<>();
         last.add(1);
         res.add(last);
 
         for (int i = 1; i < numRows; i++) {
 
-            List<Integer> cur = new ArrayList();
+            List<Integer> cur = new ArrayList<>();
             for (int j = 0; j < i + 1; j++) {
                 if (j == 0) {
                     cur.add(1);

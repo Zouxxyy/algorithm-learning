@@ -1,54 +1,55 @@
 package com.zouxxyy.c07;
 
 /*
-763. 划分字母区间
-字符串 S 由小写字母组成。我们要把这个字符串划分为尽可能多的片段，同一个字母只会出现在其中的一个片段。返回一个表示每个字符串片段的长度的列表。
+746. 使用最小花费爬楼梯
+数组的每个下标作为一个阶梯，第 i 个阶梯对应着一个非负数的体力花费值 cost[i]（下标从 0 开始）。
+
+每当你爬上一个阶梯你都要花费对应的体力值，一旦支付了相应的体力值，你就可以选择向上爬一个阶梯或者爬两个阶梯。
+
+请你找出达到楼层顶部的最低花费。在开始时，你可以选择从下标为 0 或 1 的元素作为初始阶梯。
 
 
 
 示例 1：
 
-输入：S = "ababcbacadefegdehijhklij"
-输出：[9,7,8]
-解释：
-划分结果为 "ababcbaca", "defegde", "hijhklij"。
-每个字母最多出现在一个片段中。
-像 "ababcbacadefegde", "hijhklij" 的划分是错误的，因为划分的片段数较少。
+输入：cost = [10, 15, 20]
+输出：15
+解释：最低花费是从 cost[1] 开始，然后走两步即可到阶梯顶，一共花费 15 。
+ 示例 2：
+
+输入：cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+输出：6
+解释：最低花费方式是从 cost[0] 开始，逐个经过那些 1 ，跳过 cost[3] ，一共花费 6 。
 
 
 提示：
 
-S的长度在[1, 500]之间。
-S只包含小写字母 'a' 到 'z' 。
+cost 的长度范围是 [2, 1000]。
+cost[i] 将会是一个整型数据，范围为 [0, 999] 。
  */
-
-import java.util.*;
 
 /**
  * @author zxy
  */
 public class Solution46 {
 
-    public List<Integer> partitionLabels(String S) {
+    public int minCostClimbingStairs(int[] cost) {
 
-        List<Integer> res = new ArrayList<>();
+        // dp[n] 到大 n 的最低花费
+        // dp[n] = cost[n] + min(dp[n - 1], dp[n - 2])
 
-        char[] chars = S.toCharArray();
+        int n = cost.length;
 
-        int[] last = new int[26];
-        for (int i = 0; i < chars.length; i++) {
-            last[chars[i] - 'a'] = i;
+        int[] dp = new int[n];
+
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+
+        for (int i = 2; i < n; i++) {
+            dp[i] = cost[i] + Math.min(dp[i - 1], dp[i - 2]);
         }
 
-        int start = 0, end = 0;
-        for (int i = 0; i < chars.length; i++) {
-            end = Math.max(end, last[chars[i] - 'a']);
-            if (i == end) {
-                res.add(end - start + 1);
-                start = end + 1;
-            }
-        }
-        return res;
+        return Math.min(dp[n - 2], dp[n - 1]);
     }
 
 }
