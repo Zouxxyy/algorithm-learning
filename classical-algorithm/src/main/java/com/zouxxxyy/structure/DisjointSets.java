@@ -27,6 +27,10 @@ public class DisjointSets {
 
     private final int[] parent;
     private final int[] rank;
+    /**
+     * 连通块个数
+     */
+    private int cnt;
 
     public DisjointSets(int n) {
         parent = new int[n];
@@ -47,7 +51,6 @@ public class DisjointSets {
 
         return parent[x];
     }
-
 
     /**
      * 把两个数放到一个集合，如果两个数之前不在一个集合，返回 false；否则返回 true
@@ -71,7 +74,22 @@ public class DisjointSets {
             }
             return false;
         }
+    }
 
+    /**
+     * @return 连通块个数
+     */
+    public int getCnt() {
+
+        int cnt = 0;
+
+        for (int i = 0; i < parent.length; i++) {
+            if (parent[i] == i) {
+                cnt++;
+            }
+        }
+
+        return cnt;
     }
 
 
