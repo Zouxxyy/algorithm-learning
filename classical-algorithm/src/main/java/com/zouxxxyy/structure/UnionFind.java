@@ -23,16 +23,12 @@ Union：将两个子集合并成同一个集合。
 /**
  * @author zxy
  */
-public class DisjointSets {
+public class UnionFind {
 
     private final int[] parent;
     private final int[] rank;
-    /**
-     * 连通块个数
-     */
-    private int cnt;
 
-    public DisjointSets(int n) {
+    public UnionFind(int n) {
         parent = new int[n];
         rank = new int[n];
         for (int i = 0; i < parent.length; i++) {
@@ -97,7 +93,7 @@ public class DisjointSets {
 
         int[][] edges = {{0, 1}, {1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 4}};
 
-        DisjointSets set = new DisjointSets(6);
+        UnionFind set = new UnionFind(6);
 
         for (int[] edge : edges) {
             boolean isUnion = set.union(edge[0], edge[1]);
