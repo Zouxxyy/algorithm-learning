@@ -15,6 +15,9 @@ package com.zouxxxyy.sort;
                       直到 l >= r，此时分割点为 l，把基准填入
  */
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 /**
  * @author zxy
  */
@@ -35,6 +38,7 @@ public class QuickSort {
 
     /**
      * 把数组按分割点分开，并返回分割点 index
+     *
      * @return 分割点 index
      */
     private static int getSplitIndex(int[] arr, int l, int r) {
@@ -61,6 +65,43 @@ public class QuickSort {
         }
         arr[l] = split;
         return l;
+    }
+
+
+    /**
+     * 非递归版
+     */
+    public static void quickSort2(int[] arr, int left, int right) {
+
+        LinkedList<Integer> stack = new LinkedList<>();
+
+        stack.push(left);
+        stack.push(right);
+
+        while (!stack.isEmpty()) {
+
+            int l = stack.pop();
+            int r = stack.pop();
+
+            int index = getSplitIndex(arr, left, right);
+
+            if (l < index - 1) {
+                stack.push(index - 1);
+                stack.push(l);
+            }
+
+            if (index + 1 < r) {
+                stack.push(r);
+                stack.push(index + 1);
+            }
+
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{3, 2, 5, 1, 6, 7};
+        quickSort2(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
     }
 
 }

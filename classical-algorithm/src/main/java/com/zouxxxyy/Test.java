@@ -1,29 +1,30 @@
 package com.zouxxxyy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author zxy
  */
 public class Test {
+    public static void main(String[] args) throws InterruptedException {
 
-    public static void main(String[] args) {
 
-        int[] arr1 = new int[] {1, 2, 3 ,4, 5 ,6, 7, 8};
+        Scanner scanner = new Scanner(System.in);
 
-        int l = 0, r = arr1.length;
+        while (scanner.hasNext()) {
 
-        while (l <= r) {
-            int mid = l + (r - l) / 2;
-            if (arr1[mid] == 4) {
-                System.out.println(mid);
-                break;
-            } else if (arr1[mid] < 4) {
-                l = mid + 1;
-            } else {
-                r = mid - 1;
-            }
+            int i = scanner.nextInt();
+            float v = scanner.next();
+
+
         }
-
-
     }
+
+
 
 }
