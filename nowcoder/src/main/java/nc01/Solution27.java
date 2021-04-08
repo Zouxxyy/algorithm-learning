@@ -35,32 +35,29 @@ public class Solution27 {
      */
     public String LCS(String str1, String str2) {
         // write code here
-        // dp[i][j]: str1[i:] 和 str2[j:] 的最长公共子串
-        // 转移方程：dp[i][j] = str1[i] == str2[j] ? dp[i + 1][j + 1] + 1 : 0
+        // dp[i][j] 表示 str1[0:i] 和 str[0:j]，以 i 和 j 结尾的最长公共字串
+        // dp[i][j] = s1[i] == s2[i] ? 1 + dp[i - 1][j - 1] : 0
 
-        char[] chars1 = str1.toCharArray();
-        char[] chars2 = str2.toCharArray();
-        int n1 = chars1.length, n2 = chars2.length;
-        int maxLength = 0, start = 0;
-        int[][] dp = new int[n1][n2];
+        int[][] dp = new int[str1.length()][str2.length()];
 
-        for (int i = n1 - 1; i >= 0; i--) {
-            for (int j = n2 - 1; j >= 0; j--) {
+        char[] s1 = str1.toCharArray();
+        char[] s2 = str2.toCharArray();
 
-                dp[i][j] = chars1[i] == chars2[j] ? ((i + 1 < n1 && j + 1 < n2) ? dp[i + 1][j + 1] : 0) + 1 : 0;
+        int max = 0;
+        int end = 0;
 
-                if (dp[i][j] > maxLength) {
-                    maxLength = dp[i][j];
-                    start = i;
+        for (int i = 0; i < s1.length; i++) {
+            for (int j = 0; j < s2.length; j++) {
+                if (s1[i] == s2[j]) {
+                    dp[i][j] = 1 + ((i > 0 && j > 0) ? dp[i - 1][j - 1] : 0);
+                    if (max < dp[i][j]) {
+                        max = dp[i][j];
+                        end = i;
+                    }
                 }
             }
         }
+        return str1.substring(end - max + 1, end + 1);
 
-        if (maxLength == 0) {
-            return "-1";
-        } else {
-            return str1.substring(start, start + maxLength);
-        }
     }
-
 }
