@@ -35,18 +35,16 @@ package com.zouxxyy.c03;
 /*
 思路：
 
-看到树的问题，没有其它方法，递归就完事了
+树型 DP
  */
 
-
-import java.util.HashMap;
 
 /**
  * @author zxy
  */
 public class Solution37 {
 
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -56,30 +54,27 @@ public class Solution37 {
         }
     }
 
-    private HashMap<TreeNode, Integer> cached = new HashMap<>();
-
     public int rob(TreeNode root) {
 
-        if (root == null) {
-            return 0;
+        int[] res = dfs(root);
+        return Math.max(res[0], res[1]);
+
+    }
+
+    private int[] dfs(TreeNode node) {
+
+        int[] res = new int[2];
+
+        if (node == null) {
+            return res;
         }
 
-        if (cached.containsKey(root)) {
-            return cached.get(root);
-        }
+        int[] l = dfs(node.left);
+        int[] r = dfs(node.right);
 
-        int notRobRoot = rob(root.left) + rob(root.right);
+        res[0] = node.val + l[1] + r[1];
+        res[1] = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);
 
-        int robRoot = root.val;
-        if (root.left != null) {
-            robRoot = robRoot + rob(root.left.left) + rob(root.left.right);
-        }
-        if (root.right != null) {
-            robRoot = robRoot + rob(root.right.left) + rob(root.right.right);
-        }
-
-        int res = Math.max(robRoot, notRobRoot);
-        cached.put(root, res);
         return res;
     }
 
