@@ -75,15 +75,15 @@ public class QuickSort {
 
         LinkedList<Integer> stack = new LinkedList<>();
 
-        stack.push(left);
         stack.push(right);
+        stack.push(left);
 
         while (!stack.isEmpty()) {
 
             int l = stack.pop();
             int r = stack.pop();
 
-            int index = getSplitIndex(arr, left, right);
+            int index = getSplitIndex(arr, l, r);
 
             if (l < index - 1) {
                 stack.push(index - 1);
@@ -99,7 +99,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{3, 2, 5, 1, 6, 7};
+        int[] arr = new int[]{3, 2, 5, 1, 6, 7, 8, 0, -1};
         quickSort2(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
